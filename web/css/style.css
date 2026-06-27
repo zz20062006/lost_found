@@ -1,0 +1,309 @@
+/* ========== 校园失物招领平台 自定义样式 ========== */
+
+body {
+    background-color: #f5f6fa;
+    font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    padding-top: 70px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.navbar-brand i {
+    color: #ffc107;
+    margin-right: 6px;
+}
+
+/* 首页英雄区 */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 50px 0;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+.hero-section h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.search-box {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* 卡片样式 */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* 分类导航 */
+.category-nav .btn {
+    border-radius: 20px;
+    margin: 3px 4px;
+    font-size: 0.9rem;
+}
+
+.category-nav .btn.active {
+    background: #667eea;
+    color: #fff;
+    border-color: #667eea;
+}
+
+/* 状态标签 */
+.status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-resolved {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-claimed {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    font-weight: 600;
+}
+
+/* 物品卡片图片 */
+.item-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.item-placeholder {
+    width: 100%;
+    height: 180px;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px 8px 0 0;
+    color: #adb5bd;
+    font-size: 2rem;
+}
+
+/* 详情页图片 */
+.detail-img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+/* 留言区 */
+.comment-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.comment-item {
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
+
+.comment-item:last-child {
+    border-bottom: none;
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #667eea;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* 个人中心 */
+.profile-sidebar {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.profile-sidebar .nav-link {
+    color: #555;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    padding: 10px 15px;
+}
+
+.profile-sidebar .nav-link.active,
+.profile-sidebar .nav-link:hover {
+    background: #667eea;
+    color: #fff;
+}
+
+/* 管理后台 */
+.admin-sidebar {
+    background: #2c3e50;
+    min-height: calc(100vh - 70px);
+    padding-top: 20px;
+}
+
+.admin-sidebar .nav-link {
+    color: #bdc3c7;
+    padding: 12px 20px;
+    border-left: 3px solid transparent;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+    border-left-color: #3498db;
+}
+
+.admin-content {
+    background: #f5f6fa;
+    min-height: calc(100vh - 70px);
+    padding: 25px;
+}
+
+/* 统计卡片 */
+.stat-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.stat-card .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stat-card .stat-label {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* 分页 */
+.pagination {
+    justify-content: center;
+}
+
+.page-item.active .page-link {
+    background-color: #667eea;
+    border-color: #667eea;
+}
+
+.page-link {
+    color: #667eea;
+}
+
+/* 公告面板 */
+.announcement-panel {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.announcement-item {
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.announcement-item:last-child {
+    border-bottom: none;
+}
+
+/* 页脚 */
+.footer {
+    background: #2c3e50;
+    color: #bdc3c7;
+    padding: 15px 0;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Toast提示 */
+.toast-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 9999;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+    .stat-card .stat-number {
+        font-size: 1.5rem;
+    }
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 60px 0;
+    color: #adb5bd;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+/* 加载 */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #667eea;
+}
