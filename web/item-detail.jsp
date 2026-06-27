@@ -73,33 +73,27 @@
 
     <div class="card mb-3">
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-5">
-                    <% if (image != null && !image.isEmpty()) { %>
-                        <img src="<%= image %>" class="detail-img" alt="<%= title %>"
-                             onclick="openLightbox(this.src)" style="cursor:zoom-in;" title="点击查看大图">
-                    <% } else { %>
-                        <div style="width:100%;height:300px;background:#e9ecef;display:flex;align-items:center;justify-content:center;border-radius:8px;">
-                            <i class="fas fa-image" style="font-size:3rem;color:#adb5bd;"></i>
-                        </div>
-                    <% } %>
-                </div>
-                <div class="col-md-7">
-                    <h3><%= title %></h3>
-                    <span class="status-badge <%= status == 1 ? "status-active" : "status-resolved" %>" style="font-size:1rem;">
-                        <%= statusText %>
-                    </span>
-                    <hr>
-                    <table class="table table-sm">
-                        <tr><td width="100"><strong>物品分类</strong></td><td><%= category %></td></tr>
-                        <tr><td><strong><%= "lost".equals(itemType) ? "丢失时间" : "捡到时间" %></strong></td><td><%= timeStr %></td></tr>
-                        <tr><td><strong><%= "lost".equals(itemType) ? "丢失地点" : "捡到地点" %></strong></td><td><%= place != null ? place : "未填写" %></td></tr>
-                        <tr><td><strong>发布者</strong></td><td><%= nickname != null ? nickname : "匿名" %></td></tr>
-                        <tr><td><strong>联系方式</strong></td><td><%= contact != null ? contact : "未填写" %></td></tr>
-                        <tr><td><strong>发布时间</strong></td><td><%= createTime != null ? new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(createTime) : "" %></td></tr>
-                    </table>
-                </div>
+            <h3><%= title %></h3>
+            <span class="status-badge <%= status == 1 ? "status-active" : "status-resolved" %>" style="font-size:1rem;">
+                <%= statusText %>
+            </span>
+            <hr>
+            <% if (image != null && !image.isEmpty()) { %>
+            <div style="text-align:center;margin-bottom:18px;">
+                <img src="<%= image %>" alt="<%= title %>"
+                     onclick="openLightbox(this.src)" style="cursor:zoom-in;max-width:320px;max-height:280px;border-radius:10px;object-fit:contain;background:#f8f9fa;"
+                     title="点击查看大图">
+                <p style="font-size:0.75rem;color:#aaa;margin-top:4px;">点击图片可放大查看</p>
             </div>
+            <% } %>
+            <table class="table table-sm" style="max-width:600px;">
+                <tr><td width="100"><strong>物品分类</strong></td><td><%= category %></td></tr>
+                <tr><td><strong><%= "lost".equals(itemType) ? "丢失时间" : "捡到时间" %></strong></td><td><%= timeStr %></td></tr>
+                <tr><td><strong><%= "lost".equals(itemType) ? "丢失地点" : "捡到地点" %></strong></td><td><%= place != null ? place : "未填写" %></td></tr>
+                <tr><td><strong>发布者</strong></td><td><%= nickname != null ? nickname : "匿名" %></td></tr>
+                <tr><td><strong>联系方式</strong></td><td><%= contact != null ? contact : "未填写" %></td></tr>
+                <tr><td><strong>发布时间</strong></td><td><%= createTime != null ? new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm").format(createTime) : "" %></td></tr>
+            </table>
             <% if (description != null && !description.isEmpty()) { %>
             <hr>
             <h5>详细描述</h5>
@@ -123,6 +117,11 @@
                 <% } else if (sessionUser != null && sessionUser.getUserId() == userId && status == 1) { %>
                     <button class="btn btn-outline-success btn-sm" onclick="markResolved(<%= itemId %>, '<%= itemType %>')">
                         <i class="fas fa-check"></i> 标记已找回
+                    </button>
+                <% } %>
+                <% if (sessionUser != null && sessionUser.getUserId() == userId) { %>
+                    <button class="btn btn-outline-danger btn-sm" onclick="deleteItem(<%= itemId %>, '<%= itemType %>')">
+                        <i class="fas fa-trash"></i> 删除
                     </button>
                 <% } %>
             </div>
@@ -222,6 +221,17 @@
             if (res.code === 1) {
                 showToast('认领成功！');
                 setTimeout(function(){ location.reload(); }, 500);
+            } else { showToast(res.msg, 'error'); }
+        }, 'json');
+    }
+
+    function deleteItem(itemId, itemType) {
+        if (!confirm('确定要删除该物品吗？此操作不可恢复！')) return;
+        var url = itemType === 'lost' ? contextPath + '/LostItemServlet' : contextPath + '/FoundItemServlet';
+        $.post(url, { action: 'delete', itemId: itemId }, function(res){
+            if (res.code === 1) {
+                showToast('删除成功');
+                setTimeout(function(){ window.location.href = contextPath + '/index.jsp'; }, 500);
             } else { showToast(res.msg, 'error'); }
         }, 'json');
     }
